@@ -2,14 +2,18 @@ import React from 'react';
 
 class TaskItem extends React.Component {
     render() {
+        const { task } = this.props;
         return (
-            <div class="item">
-                <div class="content">
-                    Sample Task
+            <div className="item">
+                <div className="ui toggle checkbox">
+                    <input type="checkbox" name="public" />
                 </div>
-                <div class="right floated content">
-                    <div class="ui button">Complete</div>
-                    <div class="ui button">Remove</div>
+                <div className="content">
+                    {task}
+                </div>
+                <div className="right floated content">
+                    <div className="ui button">Complete</div>
+                    <div className="ui button">Remove</div>
                 </div>
             </div>
         );

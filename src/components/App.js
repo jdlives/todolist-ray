@@ -1,19 +1,27 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import TaskItem from './TaskItem';
+import TaskList from './TaskList';
 
 class App extends React.Component {
 
-    onFormSubmit = (term) => {
-        console.log(term)
+    constructor(props) {
+        super(props);
+        this.state = {
+            taskList: []
+        };
+    }
+
+    onFormSubmit = (newTask) => {
+        this.setState({ taskList: [...this.state.taskList, newTask] });
     };
 
     render() {
+        const { taskList } = this.state;
         return <div className="ui container" style={{marginTop: '10px'}}>
             <SearchBar onSubmitCallback={this.onFormSubmit}/>
             <div className="ui segment">
-                <div class="ui middle aligned divided list">
-                    <TaskItem />
+                <div className="ui middle aligned divided list">
+                    <TaskList taskList={taskList} />
                 </div>
             </div>
         </div>

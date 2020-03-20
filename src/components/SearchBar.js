@@ -2,21 +2,22 @@ import React from 'react';
 
 class SearchBar extends React.Component {
 
-    state = { term: '' };
+    state = { task: '' };
 
     constructor(props) {
         super(props)
-        this.state = { term: 'initial' };
+        this.state = { task: '' };
         this.onFormSubmit = this.onFormSubmit.bind(this)
     }
 
     onInputChange = (event) => {
-        this.setState({ term: event.target.value.toUpperCase() })
+        this.setState({ task: event.target.value.toUpperCase() })
     }
 
     onFormSubmit(event) {
         event.preventDefault();
-        this.props.onSubmitCallback(this.state.term);
+        this.props.onSubmitCallback(this.state.task);
+        this.setState({ task: '' })
     }
 
     render() {
@@ -25,7 +26,7 @@ class SearchBar extends React.Component {
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Add Task</label>
-                        <input type="text" value={this.state.term} onChange={this.onInputChange} />
+                        <input type="text" value={this.state.task} onChange={this.onInputChange} />
                     </div>
                 </form> 
             </div>
