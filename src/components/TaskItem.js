@@ -35,7 +35,7 @@ class TaskItem extends React.Component {
         const { tag, task } = this.props;
         const { isEditing } = this.state;
         return (
-            <div className="item" style={{display:"flex"}} >
+            <div className="item" style={{display:"flex", padding:"3px"}} >
                 <button
                     className={`ui toggle button ${task.ongoing ? "active": "inactive" }`}
                     type="checkbox"
