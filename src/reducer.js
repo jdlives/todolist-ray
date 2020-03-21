@@ -28,14 +28,15 @@ function toggleTodo (state, payload) {
     }
 };
 
-function getSingleTodo (state, payload) {
+function updateDetails (state, payload) {
+    var array = [...state.todoList];
+    var tag = payload.tag
+    array[tag].details = payload.details
     return {
         ...state,
-        selectedTodo: state.todoList[payload.tag]
+        todoList: array
     }
-
-}
-
+};
 
 const initialState = {
     todoList: [],
@@ -51,8 +52,8 @@ export default function (state = initialState, action) {
             return spliceList(state, action.payload)
         case 'DO_TOGGLE':
             return toggleTodo(state, action.payload)
-        case 'DO_GET_TODO':
-            return getSingleTodo(state, action.payload)
+        case 'DO_UPDATE':
+            return updateDetails(state, action.payload)
         default:
             return state;
     }

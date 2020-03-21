@@ -13,11 +13,11 @@ class TodoList extends React.Component {
     }
 
     render() {
-        const { todoList, onEditCallback } = this.props;
+        const { todoList } = this.props;
         return (
             <div>
                 {todoList.map((item, index) => (
-                <TodoItem key={uuidv4()} tag={index} todo={item} onEditCallback={onEditCallback} />
+                <TodoItem key={uuidv4()} tag={index} todo={item} />
               ))}
             </div>
         );

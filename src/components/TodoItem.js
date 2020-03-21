@@ -10,7 +10,7 @@ class TodoItem extends React.Component {
         todo: PropTypes.object.isRequired,
         spliceTodo: PropTypes.func.isRequired,
         toggleTodo:PropTypes.func.isRequired,
-        onEditCallback: PropTypes.func.isRequired
+        updateTodoDetails: PropTypes.func.isRequired
     }
 
     constructor(props) {
@@ -22,7 +22,7 @@ class TodoItem extends React.Component {
     }
 
     onToggleEditingStatus = () => {
-        this.setState({ isEditing: !this.state.isEditing });
+        this.setState({ isEditing: true });
     }
 
     handleRemove = (tag) => {
@@ -30,18 +30,19 @@ class TodoItem extends React.Component {
         spliceTodo(tag);
     }
 
-    onClickComplete = (tag) => {
+    handleStatusToggle = (tag) => {
         const { toggleTodo } = this.props;
         toggleTodo(tag)
     }
 
-    onInputChange = (event) => {
+    handleInputChange = (event) => {
         this.setState({ details: event.target.value})
     }
 
-    onFormSubmit(event, tag) {
+    handleFormSubmit(event, tag) {
+        const { updateTodoDetails } = this.props;
         event.preventDefault();
-        this.props.onEditCallback(tag,this.state.details);
+        updateTodoDetails(tag,this.state.details);
         this.setState({ isEditing: false })
     }
 
@@ -54,7 +55,7 @@ class TodoItem extends React.Component {
                     className={`ui toggle button ${todo.ongoing ? "active": "inactive" }`}
                     type="checkbox"
                     checked={todo.ongoing}
-                    onClick={() => this.onClickComplete(tag)}
+                    onClick={() => this.handleStatusToggle(tag)}
                 >
                     {todo.ongoing ? "Active": "Done"}
                 </button>
@@ -62,9 +63,9 @@ class TodoItem extends React.Component {
                 <div className="content" onClick={this.onToggleEditingStatus} style={{width: "100%"}}>
 						
                 {isEditing ? (<div className="field">
-                    <form onSubmit={(event) => this.onFormSubmit(event,tag)} className="ui form">
+                    <form onSubmit={(event) => this.handleFormSubmit(event,tag)} className="ui form">
                         <div className="field">
-                            <input type="text" value={this.state.details} onChange={this.onInputChange} />
+                            <input type="text" value={this.state.details} onChange={this.handleInputChange} />
                         </div>
                     </form> 
                 </div>)
