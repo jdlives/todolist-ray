@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
     }
 
     onInputChange = (event) => {
-        this.setState({ task: event.target.value.toUpperCase() })
+        this.setState({ task: event.target.value})
     }
 
     onFormSubmit(event) {

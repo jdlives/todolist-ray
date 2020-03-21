@@ -1,8 +1,11 @@
 import React from 'react';
 
 class TaskItem extends React.Component {
+    onClickDelete = (task) => {
+        this.props.onRemoveCallback(task)
+    }
     render() {
-        const { task } = this.props;
+        const { tag, task, onRemoveCallback } = this.props;
         return (
             <div className="item">
                 <div className="ui toggle checkbox">
@@ -12,8 +15,8 @@ class TaskItem extends React.Component {
                     {task}
                 </div>
                 <div className="right floated content">
-                    <div className="ui button">Complete</div>
-                    <div className="ui button">Remove</div>
+                    <div className="ui button" >Complete</div>
+                    <div className="ui button" onClick={() => this.onClickDelete(tag)}>Remove</div>
                 </div>
             </div>
         );
