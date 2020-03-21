@@ -61,7 +61,7 @@ class TodoItem extends React.Component {
                     <i className={`large ${todo.ongoing ? "circle outline": "circle"} icon`}></i>
                 </button>
 
-                <div className="content" onClick={this.onToggleEditingStatus} style={{width: "100%"}}>
+                <div className="content" onClick={this.onToggleEditingStatus} style={{width: "100%", display: "flex", alignItems: "center"}}>
 						
                 {isEditing ? (<div className="field">
                     <form onSubmit={(event) => this.handleFormSubmit(event,tag)} className="ui form">
