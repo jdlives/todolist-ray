@@ -52,21 +52,20 @@ class TodoItem extends React.Component {
         return (
             <div className="item" style={{display:"flex", padding:"3px"}} >
                 <button
-                    className={`ui toggle button ${todo.ongoing ? "active": "inactive" }`}
+                    className={`ui ${todo.ongoing ? "circle outline": "circle"} button` }
                     type="checkbox"
+                    style={{background: "white", textAlign: "center"}}
                     checked={todo.ongoing}
                     onClick={() => this.handleStatusToggle(tag)}
                 >
-                    {todo.ongoing ? "Active": "Done"}
+                    <i className={`large ${todo.ongoing ? "circle outline": "circle"} icon`}></i>
                 </button>
 
                 <div className="content" onClick={this.onToggleEditingStatus} style={{width: "100%"}}>
 						
                 {isEditing ? (<div className="field">
                     <form onSubmit={(event) => this.handleFormSubmit(event,tag)} className="ui form">
-                        <div className="field">
                             <input type="text" value={this.state.details} onChange={this.handleInputChange} />
-                        </div>
                     </form> 
                 </div>)
                 :
@@ -77,7 +76,12 @@ class TodoItem extends React.Component {
                 }
                 </div>
         
-                <div className="ui button" onClick={() => this.handleRemove(tag)}>Remove</div>
+                <div className="ui button" 
+                    onClick={() => this.handleRemove(tag)}
+                    style={{background: "white"}}
+                >
+                    <i className="large close icon"></i>
+                </div>
                 
             </div>
         );

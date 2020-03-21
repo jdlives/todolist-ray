@@ -12,15 +12,27 @@ class TodoList extends React.Component {
         todoList: PropTypes.array.isRequired
     }
 
+    renderList(todoList) {
+        console.log(todoList)
+        if (todoList.length > 0) {
+            return (
+                <div className="ui segment">
+                    <div className="ui middle aligned divided list"></div>
+                        <div>
+                            {todoList.map((item, index) => (
+                            <TodoItem key={uuidv4()} tag={index} todo={item} />
+                        ))}
+                    </div>
+                </div>
+            );
+        } else {
+            return null
+        }
+    }
+
     render() {
         const { todoList } = this.props;
-        return (
-            <div>
-                {todoList.map((item, index) => (
-                <TodoItem key={uuidv4()} tag={index} todo={item} />
-              ))}
-            </div>
-        );
+        return this.renderList(todoList)
     }
 }
 

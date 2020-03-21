@@ -33,8 +33,8 @@ class SearchBar extends React.Component {
             <div className="ui segment">
                 <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
-                        <label>Add Task</label>
-                        <input type="text" value={this.state.task} onChange={this.onInputChange} />
+                        <label>Add a todo</label>
+                        <input placeholder="Add a todo" type="text" value={this.state.task} onChange={this.onInputChange} />
                     </div>
                 </form> 
             </div>
