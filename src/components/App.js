@@ -29,13 +29,19 @@ class App extends React.Component {
         this.setState({taskList: array});
     };
 
+    onEditItem = (key, description) => {
+        var array = [...this.state.taskList]; 
+        array[key].description = description
+        this.setState({taskList: array});
+    }
+
     render() {
         const { taskList } = this.state;
         return <div className="ui container" style={{marginTop: '10px'}}>
             <SearchBar onSubmitCallback={this.onFormSubmit}/>
             <div className="ui segment">
                 <div className="ui middle aligned divided list">
-                    <TaskList taskList={taskList} onRemoveCallback={this.onRemoveItem} onCompleteCallback={this.onCompleteItem}/>
+                    <TaskList taskList={taskList} onRemoveCallback={this.onRemoveItem} onCompleteCallback={this.onCompleteItem} onEditCallback={this.onEditItem}/>
                 </div>
             </div>
         </div>

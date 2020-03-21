@@ -4,7 +4,8 @@ class TaskItem extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            isEditing: false
+            isEditing: false,
+            taskDescription: props.task.description
         }
     }
 
@@ -21,7 +22,13 @@ class TaskItem extends React.Component {
     }
 
     onInputChange = (event) => {
-        console.log(event);
+        this.setState({ taskDescription: event.target.value})
+    }
+
+    onFormSubmit(event, tag) {
+        event.preventDefault();
+        this.props.onEditCallback(tag,this.state.taskDescription);
+        this.setState({ isEditing: false })
     }
 
     render() {
@@ -30,7 +37,11 @@ class TaskItem extends React.Component {
         return (
             <div className="item">
                 {isEditing ? (<div className="field">
-                    <input type="text" onChange={this.onInputChange} />
+                    <form onSubmit={(event) => this.onFormSubmit(event,tag)} className="ui form">
+                        <div className="field">
+                            <input type="text" value={this.state.taskDescription} onChange={this.onInputChange} />
+                        </div>
+                    </form> 
                 </div>)
                 :
                 (<div className="content" onClick={this.onToggleEditingStatus} >
