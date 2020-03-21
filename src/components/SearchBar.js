@@ -1,22 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
+import actions from '../actions';
 
 class SearchBar extends React.Component {
+
+    static propTypes = {
+        addTodo: PropTypes.func.isRequired
+    }
 
     state = { task: '' };
 
     constructor(props) {
         super(props)
         this.state = { task: '' };
-        this.onFormSubmit = this.onFormSubmit.bind(this)
     }
 
     onInputChange = (event) => {
         this.setState({ task: event.target.value})
     }
 
-    onFormSubmit(event) {
+    onFormSubmit = (event) => {
+        const { addTodo } = this.props;
         event.preventDefault();
-        this.props.onSubmitCallback(this.state.task);
+        addTodo(this.state.task);
         this.setState({ task: '' })
     }
 
@@ -34,4 +42,4 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+export default connect(null, actions)(SearchBar);
