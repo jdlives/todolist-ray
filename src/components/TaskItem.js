@@ -35,7 +35,18 @@ class TaskItem extends React.Component {
         const { tag, task } = this.props;
         const { isEditing } = this.state;
         return (
-            <div className="item">
+            <div className="item" style={{display:"flex"}} >
+                <button
+                    className={`ui toggle button ${task.ongoing ? "active": "inactive" }`}
+                    type="checkbox"
+                    checked={task.ongoing}
+                    onClick={() => this.onClickComplete(tag)}
+                >
+                    {task.ongoing ? "Active": "Done"}
+                </button>
+
+                <div className="content" onClick={this.onToggleEditingStatus} style={{width: "100%"}}>
+						
                 {isEditing ? (<div className="field">
                     <form onSubmit={(event) => this.onFormSubmit(event,tag)} className="ui form">
                         <div className="field">
@@ -44,18 +55,15 @@ class TaskItem extends React.Component {
                     </form> 
                 </div>)
                 :
-                (<div className="content" onClick={this.onToggleEditingStatus} >
-                    {task.ongoing ? <label>{task.description}</label>
-                        : <label style={{textDecoration:'line-through'}}>{task.description}</label>
-                    }
-                    
-                </div>)
-                }
-                
-                <div className="right floated content">
-                    <div className="ui button" onClick={() => this.onClickComplete(tag)}>Complete</div>
-                    <div className="ui button" onClick={() => this.onClickDelete(tag)}>Remove</div>
+                ( <div>
+                    <h2 style={{textDecoration:task.ongoing ? null: "line-through"}}>{task.description}</h2>
                 </div>
+                    )
+                }
+                </div>
+        
+                <div className="ui button" onClick={() => this.onClickDelete(tag)}>Remove</div>
+                
             </div>
         );
     }
