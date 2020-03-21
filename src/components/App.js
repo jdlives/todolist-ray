@@ -12,7 +12,7 @@ class App extends React.Component {
     }
 
     onFormSubmit = (newTask) => {
-        this.setState({ taskList: [...this.state.taskList, newTask] });
+        this.setState({ taskList: [...this.state.taskList, { description: newTask, ongoing: true }] });
     };
 
     onRemoveItem = (key) => {
@@ -23,13 +23,19 @@ class App extends React.Component {
         }
     };
 
+    onCompleteItem = (key) => {
+        var array = [...this.state.taskList]; 
+        array[key].ongoing = !array[key].ongoing
+        this.setState({taskList: array});
+    };
+
     render() {
         const { taskList } = this.state;
         return <div className="ui container" style={{marginTop: '10px'}}>
             <SearchBar onSubmitCallback={this.onFormSubmit}/>
             <div className="ui segment">
                 <div className="ui middle aligned divided list">
-                    <TaskList taskList={taskList} onRemoveCallback={this.onRemoveItem}/>
+                    <TaskList taskList={taskList} onRemoveCallback={this.onRemoveItem} onCompleteCallback={this.onCompleteItem}/>
                 </div>
             </div>
         </div>

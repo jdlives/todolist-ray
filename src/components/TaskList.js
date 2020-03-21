@@ -3,11 +3,11 @@ import TaskItem from './TaskItem';
 
 class TaskList extends React.Component {
     render() {
-        const { taskList, onRemoveCallback } = this.props;
+        const { taskList, onRemoveCallback, onCompleteCallback } = this.props;
         return (
             <div>
                 {taskList.map((item, index) => (
-                <TaskItem key={index} tag={index} task={item} onRemoveCallback={onRemoveCallback} />
+                <TaskItem key={index} tag={index} task={item} onRemoveCallback={onRemoveCallback} onCompleteCallback={onCompleteCallback} />
               ))}
             </div>
         );
