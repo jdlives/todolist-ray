@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 
 import actions from '../actions';
 import TodoItem from './TodoItem';
@@ -16,7 +17,7 @@ class TodoList extends React.Component {
         return (
             <div>
                 {todoList.map((item, index) => (
-                <TodoItem key={index} tag={index} todo={item} onEditCallback={onEditCallback} />
+                <TodoItem key={uuidv4()} tag={index} todo={item} onEditCallback={onEditCallback} />
               ))}
             </div>
         );
