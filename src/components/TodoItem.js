@@ -70,6 +70,9 @@ class TodoItem extends React.Component {
         headerContainer: {
             maxWidth: "100%",
         },
+        field: {
+            width: "100%",
+        },
     };
 
     render() {
@@ -95,7 +98,7 @@ class TodoItem extends React.Component {
                     style={this.itemStyle.contentDiv}
                 >
                     {isEditing ? (
-                        <div className="field">
+                        <div className="field" style={this.itemStyle.field}>
                             <form
                                 onSubmit={(event) => this.handleFormSubmit(event, tag)}
                                 className="ui form"

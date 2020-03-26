@@ -18,13 +18,12 @@ class TodoList extends React.Component {
                     <div className="ui middle aligned divided list"></div>
                     <div>
                         {todoList.map((item, index) => (
-                            <React.Fragment>
+                            <React.Fragment key={uuidv4()}>
                                 <TodoItem
-                                    key={uuidv4()}
                                     tag={index}
                                     todo={item}
                                 />
-                                <div class="ui divider"></div>
+                                <div className="ui divider"></div>
                             </React.Fragment>
                         ))}
                     </div>
